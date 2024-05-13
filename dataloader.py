@@ -10,15 +10,15 @@ import gc
 def load_data(dataset = 'nips_multi', test_ratio=0.1, seed = 3407):
     if dataset == 'nips_multi':
         mod_file_path = "./data/GSE194122_openproblems_neurips2021_multiome_BMMC_processed.h5ad"
-        gene_encoding = pd.read_csv('./useful_file/gene_coding_nips_rna_atac.csv')
+        gene_encoding = pd.read_csv('./gene_coding_nips_rna_atac.csv')
         adata_mod1, adata_mod2 = load_nips_rna_atac_dataset(mod_file_path, gene_encoding)
         gc.collect()
         adata_mod1, adata_mod2 = prepare_nips_dataset(adata_mod1, adata_mod2)
         n_sample = adata_mod1.shape[0]
     elif dataset == 'nips_cite':
         mod_file_path = "./data/GSE194122_openproblems_neurips2021_cite_BMMC_processed.h5ad"
-        gene_encoding = pd.read_csv('./useful_file/gene_coding_nips_rna_protein.csv')
-        protein_encoding = pd.read_csv('./useful_file/protein_coding_nips_rna_protein.csv')
+        gene_encoding = pd.read_csv('./gene_coding_nips_rna_protein.csv')
+        protein_encoding = pd.read_csv('./protein_coding_nips_rna_protein.csv')
         adata_mod1, adata_mod2 = load_nips_dataset_rna_protein_dataset(mod_file_path, gene_encoding, protein_encoding)
         gc.collect()
         adata_mod1, adata_mod2 = prepare_nips_dataset(adata_mod1, adata_mod2)
